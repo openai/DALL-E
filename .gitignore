@@ -1,0 +1,18 @@
+# OS specific
+*.DS_Store
+
+# Python
+/build
+/dist
+__pycache__
+*.ipynb_checkpoints
+*.egg-info
+
+# Vim
+*.vim
+*.swk
+*.swl
+*.swm
+*.swn
+*.swo
+*.swp
