@@ -35,7 +35,7 @@ not be releasing the dataset.
 The heavy compression from the encoding process results in a noticeable loss of detail in the reconstructed images. This
 renders it inappropriate for applications that require fine-grained details of the image to be preserved.
 
-[dalle_paper]: TODO
+[dalle_paper]: https://arxiv.org/abs/2102.12092
 [cc]: https://ai.google.com/research/ConceptualCaptions
 [cc_paper]: https://www.aclweb.org/anthology/P18-1238/
 [yfcc100m]: http://projects.dfki.uni-kl.de/yfcc100m/
