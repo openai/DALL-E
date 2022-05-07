@@ -6,3 +6,4 @@ pytest
 requests
 torch
 torchvision
+IPython
