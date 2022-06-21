@@ -9,3 +9,11 @@ This is the official PyTorch package for the discrete VAE used for DALL·E. The 
 Before running [the example notebook](notebooks/usage.ipynb), you will need to install the package using
 
 	pip install DALL-E
+
+If pip install DALL-E fails to initiate the instalation, try:
+
+	pip3 install DALL-E
+
+Ensure PIP has been added to your PATH variable:
+
+	To check that pip has been added to your PATH variable: Press the Windows key + R to open Run. Type “ cmd “ and then press Enter for the command prompt. For a list of the locations added to your PATH variable, type “ echo %PATH% “ and hit Enter.****
