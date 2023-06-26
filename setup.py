@@ -1,8 +1,12 @@
 from setuptools import setup
 
 def parse_requirements(filename):
-	lines = (line.strip() for line in open(filename))
-	return [line for line in lines if line and not line.startswith("#")]
+	lines = []
+	for line in open(filename):
+		line = line.strip()
+		if line and not line.startswith("#"):
+			lines.append(line)
+	return lines
 
 setup(name='DALL-E',
         version='0.1',
