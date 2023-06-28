@@ -60,27 +60,25 @@ class Encoder(nn.Module):
 				requires_grad=self.requires_grad)
 
 		self.blocks = nn.Sequential(OrderedDict([
-			('input', make_conv(self.input_channels, 1 * self.n_hid, 7)),
-			('group_1', nn.Sequential(OrderedDict([
-				*[(f'block_{i + 1}', make_blk(1 * self.n_hid, 1 * self.n_hid)) for i in blk_range],
-				('pool', nn.MaxPool2d(kernel_size=2)),
-			]))),
-			('group_2', nn.Sequential(OrderedDict([
-				*[(f'block_{i + 1}', make_blk(1 * self.n_hid if i == 0 else 2 * self.n_hid, 2 * self.n_hid)) for i in blk_range],
-				('pool', nn.MaxPool2d(kernel_size=2)),
-			]))),
-			('group_3', nn.Sequential(OrderedDict([
-				*[(f'block_{i + 1}', make_blk(2 * self.n_hid if i == 0 else 4 * self.n_hid, 4 * self.n_hid)) for i in blk_range],
-				('pool', nn.MaxPool2d(kernel_size=2)),
-			]))),
-			('group_4', nn.Sequential(OrderedDict([
-				*[(f'block_{i + 1}', make_blk(4 * self.n_hid if i == 0 else 8 * self.n_hid, 8 * self.n_hid)) for i in blk_range],
-			]))),
-			('output', nn.Sequential(OrderedDict([
-				('relu', nn.ReLU()),
-				('conv', make_conv(8 * self.n_hid, self.vocab_size, 1, use_float16=False)),
-			]))),
-		]))
+    ('input', make_conv(self.input_channels, 1 * self.n_hid, 7)),
+    *[
+        (
+            f'group_{i + 1}',
+            nn.Sequential(
+                OrderedDict([
+                    *[(f'block_{j + 1}', make_blk((2 ** i) * self.n_hid if j == 0 else (2 ** (i + 1)) * self.n_hid, (2 ** (i + 1)) * self.n_hid)) for j in blk_range],
+                    ('pool', nn.MaxPool2d(kernel_size=2)),
+                ])
+            )
+        )
+        for i in range(self.group_count)
+    ],
+    ('output', nn.Sequential(OrderedDict([
+        ('relu', nn.ReLU()),
+        ('conv', make_conv(8 * self.n_hid, self.vocab_size, 1, use_float16=False)),
+    ]))),
+]))
+
 
 	def forward(self, x: torch.Tensor) -> torch.Tensor:
 		if len(x.shape) != 4:
