@@ -1,0 +1,290 @@
+{
+    "0": {
+        "file_id": 0,
+        "content": "/README.md",
+        "type": "filepath"
+    },
+    "1": {
+        "file_id": 0,
+        "content": "This is the official PyTorch package for DALL-E's discrete VAE. Transformer for image generation from text not included. Install using pip install DALL-E.",
+        "type": "summary"
+    },
+    "2": {
+        "file_id": 0,
+        "content": "# Overview\n[[Blog]](https://openai.com/blog/dall-e/) [[Paper]](https://arxiv.org/abs/2102.12092) [[Model Card]](model_card.md) [[Usage]](notebooks/usage.ipynb)\nThis is the official PyTorch package for the discrete VAE used for DALL·E. The transformer used to generate the images from the text is not part of this code release.\n# Installation\nBefore running [the example notebook](notebooks/usage.ipynb), you will need to install the package using\n\tpip install DALL-E",
+        "type": "code",
+        "location": "/README.md:1-11"
+    },
+    "3": {
+        "file_id": 0,
+        "content": "This is the official PyTorch package for DALL-E's discrete VAE. Transformer for image generation from text not included. Install using pip install DALL-E.",
+        "type": "comment"
+    },
+    "4": {
+        "file_id": 1,
+        "content": "/model_card.md",
+        "type": "filepath"
+    },
+    "5": {
+        "file_id": 1,
+        "content": "DALL·E's dVAE model by OpenAI reduces memory footprint but is unsuitable for high-fidelity image processing and general-purpose image compression due to loss of fine details.",
+        "type": "summary"
+    },
+    "6": {
+        "file_id": 1,
+        "content": "# Model Card: DALL·E dVAE\nFollowing [Model Cards for Model Reporting (Mitchell et al.)](https://arxiv.org/abs/1810.03993) and [Lessons from\nArchives (Jo & Gebru)](https://arxiv.org/pdf/1912.10389.pdf), we're providing some information about about the discrete\nVAE (dVAE) that was used to train DALL·E.\n## Model Details\nThe dVAE was developed by researchers at OpenAI to reduce the memory footprint of the transformer trained on the\ntext-to-image generation task. The details involved in training the dVAE are described in [the paper][dalle_paper]. This\nmodel card describes the first version of the model, released in February 2021. The model consists of a convolutional\nencoder and decoder whose architectures are described [here](dall_e/encoder.py) and [here](dall_e/decoder.py), respectively.\nFor questions or comments about the models or the code release, please file a Github issue.\n## Model Use\n### Intended Use\nThe model is intended for others to use for training their own generative models.\n### Out-of-Scope Use Cases",
+        "type": "code",
+        "location": "/model_card.md:1-21"
+    },
+    "7": {
+        "file_id": 1,
+        "content": "This is the model card for DALL·E's discrete VAE (dVAE), which was developed by OpenAI to reduce transformer memory footprint.",
+        "type": "comment"
+    },
+    "8": {
+        "file_id": 1,
+        "content": "This model is inappropriate for high-fidelity image processing applications. We also do not recommend its use as a\ngeneral-purpose image compressor.\n## Training Data\nThe model was trained on publicly available text-image pairs collected from the internet. This data consists partly of\n[Conceptual Captions][cc] and a filtered subset of [YFCC100M][yfcc100m]. We used a subset of the filters described in\n[Sharma et al.][cc_paper] to construct this dataset; further details are described in [our paper][dalle_paper]. We will\nnot be releasing the dataset.\n## Performance and Limitations\nThe heavy compression from the encoding process results in a noticeable loss of detail in the reconstructed images. This\nrenders it inappropriate for applications that require fine-grained details of the image to be preserved.\n[dalle_paper]: https://arxiv.org/abs/2102.12092\n[cc]: https://ai.google.com/research/ConceptualCaptions\n[cc_paper]: https://www.aclweb.org/anthology/P18-1238/\n[yfcc100m]: http://projects.dfki.uni-kl.de/yfcc100m/",
+        "type": "code",
+        "location": "/model_card.md:23-41"
+    },
+    "9": {
+        "file_id": 1,
+        "content": "The model is not suitable for high-fidelity image processing or general-purpose image compression. It was trained on a mix of Conceptual Captions and filtered YFCC100M datasets using specific filters, details in the paper. The dataset will not be released. Compression leads to loss of fine image details, making it unsuitable for applications requiring preserved details.",
+        "type": "comment"
+    },
+    "10": {
+        "file_id": 2,
+        "content": "/requirements.txt",
+        "type": "filepath"
+    },
+    "11": {
+        "file_id": 2,
+        "content": "Installed packages for codebase: Pillow, blobfile, mypy, numpy, pytest, requests, torch, torchvision.",
+        "type": "summary"
+    },
+    "12": {
+        "file_id": 2,
+        "content": "Pillow\nblobfile\nmypy\nnumpy\npytest\nrequests\ntorch\ntorchvision",
+        "type": "code",
+        "location": "/requirements.txt:1-8"
+    },
+    "13": {
+        "file_id": 2,
+        "content": "Installed packages for codebase: Pillow, blobfile, mypy, numpy, pytest, requests, torch, torchvision.",
+        "type": "comment"
+    },
+    "14": {
+        "file_id": 3,
+        "content": "/setup.py",
+        "type": "filepath"
+    },
+    "15": {
+        "file_id": 3,
+        "content": "This code sets up a Python package named \"DALL-E\" using the setuptools module. It uses the file \"requirements.txt\" to specify installation requirements, and describes it as a PyTorch package for DALL-E's discrete VAE implementation.",
+        "type": "summary"
+    },
+    "16": {
+        "file_id": 3,
+        "content": "from setuptools import setup\ndef parse_requirements(filename):\n\tlines = (line.strip() for line in open(filename))\n\treturn [line for line in lines if line and not line.startswith(\"#\")]\nsetup(name='DALL-E',\n        version='0.1',\n        description='PyTorch package for the discrete VAE used for DALL·E.',\n        url='http://github.com/openai/DALL-E',\n        author='Aditya Ramesh',\n        author_email='aramesh@openai.com',\n        license='BSD',\n        packages=['dall_e'],\n        install_requires=parse_requirements('requirements.txt'),\n        zip_safe=True)",
+        "type": "code",
+        "location": "/setup.py:1-16"
+    },
+    "17": {
+        "file_id": 3,
+        "content": "This code sets up a Python package named \"DALL-E\" using the setuptools module. It uses the file \"requirements.txt\" to specify installation requirements, and describes it as a PyTorch package for DALL-E's discrete VAE implementation.",
+        "type": "comment"
+    },
+    "18": {
+        "file_id": 4,
+        "content": "/dall_e/__init__.py",
+        "type": "filepath"
+    },
+    "19": {
+        "file_id": 4,
+        "content": "The code imports necessary libraries, defines a function load_model that loads the DALL-E model from a given path, and handles loading the model from either URL or local file.",
+        "type": "summary"
+    },
+    "20": {
+        "file_id": 4,
+        "content": "import io, requests\nimport torch\nimport torch.nn as nn\nfrom dall_e.encoder import Encoder\nfrom dall_e.decoder import Decoder\nfrom dall_e.utils   import map_pixels, unmap_pixels\ndef load_model(path: str, device: torch.device = None) -> nn.Module:\n    if path.startswith('http://') or path.startswith('https://'):\n        resp = requests.get(path)\n        resp.raise_for_status()\n        with io.BytesIO(resp.content) as buf:\n            return torch.load(buf, map_location=device)\n    else:\n        with open(path, 'rb') as f:\n            return torch.load(f, map_location=device)",
+        "type": "code",
+        "location": "/dall_e/__init__.py:1-18"
+    },
+    "21": {
+        "file_id": 4,
+        "content": "The code imports necessary libraries, defines a function load_model that loads the DALL-E model from a given path, and handles loading the model from either URL or local file.",
+        "type": "comment"
+    },
+    "22": {
+        "file_id": 5,
+        "content": "/dall_e/decoder.py",
+        "type": "filepath"
+    },
+    "23": {
+        "file_id": 5,
+        "content": "PyTorch models are described in both comments, with Comment A focusing on DALL-E's architecture involving multiple groups and partial functions for convolutional layers. In contrast, Comment B presents an encoder-decoder model using convolutional layers, residual connections, and ReLU activations.",
+        "type": "summary"
+    },
+    "24": {
+        "file_id": 5,
+        "content": "import attr\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom collections  import OrderedDict\nfrom functools    import partial\nfrom dall_e.utils import Conv2d\n@attr.s(eq=False, repr=False)\nclass DecoderBlock(nn.Module):\n\tn_in:     int = attr.ib(validator=lambda i, a, x: x >= 1)\n\tn_out:    int = attr.ib(validator=lambda i, a, x: x >= 1 and x % 4 ==0)\n\tn_layers: int = attr.ib(validator=lambda i, a, x: x >= 1)\n\tdevice:        torch.device = attr.ib(default=None)\n\trequires_grad: bool         = attr.ib(default=False)\n\tdef __attrs_post_init__(self) -> None:\n\t\tsuper().__init__()\n\t\tself.n_hid = self.n_out // 4\n\t\tself.post_gain = 1 / (self.n_layers ** 2)\n\t\tmake_conv     = partial(Conv2d, device=self.device, requires_grad=self.requires_grad)\n\t\tself.id_path  = make_conv(self.n_in, self.n_out, 1) if self.n_in != self.n_out else nn.Identity()\n\t\tself.res_path = nn.Sequential(OrderedDict([\n\t\t\t\t('relu_1', nn.ReLU()),\n\t\t\t\t('conv_1', make_conv(self.n_in,  self.n_hid, 1)),\n\t\t\t\t('relu_2', nn.ReLU()),",
+        "type": "code",
+        "location": "/dall_e/decoder.py:1-31"
+    },
+    "25": {
+        "file_id": 5,
+        "content": "This code defines a DecoderBlock class which is a neural network module. It takes input size (n_in), output size (n_out), number of layers (n_layers), device, and requires_grad as attributes. It initializes the hidden layer size (n_hid), post gain value, and makes convolution layers using partial function. The id_path is an identity path if n_in == n_out, otherwise it's a convolution layer. The res_path is a sequence of ReLU activations and convolution layers.",
+        "type": "comment"
+    },
+    "26": {
+        "file_id": 5,
+        "content": "\t\t\t\t('conv_2', make_conv(self.n_hid, self.n_hid, 3)),\n\t\t\t\t('relu_3', nn.ReLU()),\n\t\t\t\t('conv_3', make_conv(self.n_hid, self.n_hid, 3)),\n\t\t\t\t('relu_4', nn.ReLU()),\n\t\t\t\t('conv_4', make_conv(self.n_hid, self.n_out, 3)),]))\n\tdef forward(self, x: torch.Tensor) -> torch.Tensor:\n\t\treturn self.id_path(x) + self.post_gain * self.res_path(x)\n@attr.s(eq=False, repr=False)\nclass Decoder(nn.Module):\n\tgroup_count:     int = 4\n\tn_init:          int = attr.ib(default=128,  validator=lambda i, a, x: x >= 8)\n\tn_hid:           int = attr.ib(default=256,  validator=lambda i, a, x: x >= 64)\n\tn_blk_per_group: int = attr.ib(default=2,    validator=lambda i, a, x: x >= 1)\n\toutput_channels: int = attr.ib(default=3,    validator=lambda i, a, x: x >= 1)\n\tvocab_size:      int = attr.ib(default=8192, validator=lambda i, a, x: x >= 512)\n\tdevice:              torch.device = attr.ib(default=torch.device('cpu'))\n\trequires_grad:       bool         = attr.ib(default=False)\n\tuse_mixed_precision: bool         = attr.ib(default=True)\n\tdef __attrs_post_init__(self) -> None:",
+        "type": "code",
+        "location": "/dall_e/decoder.py:32-54"
+    },
+    "27": {
+        "file_id": 5,
+        "content": "This code defines a class called Decoder which is an instance of the nn.Module class in PyTorch. It has several attributes such as group_count, n_init, n_hid, n_blk_per_group, output_channels, vocab_size, device, requires_grad, and use_mixed_precision. The forward method is defined to compute the forward pass of the decoder network. It uses a combination of the id_path and res_path outputs, which are likely residual paths in the network. The make_conv function seems to be used to create convolutional layers with specified parameters.",
+        "type": "comment"
+    },
+    "28": {
+        "file_id": 5,
+        "content": "\t\tsuper().__init__()\n\t\tblk_range  = range(self.n_blk_per_group)\n\t\tn_layers   = self.group_count * self.n_blk_per_group\n\t\tmake_conv  = partial(Conv2d, device=self.device, requires_grad=self.requires_grad)\n\t\tmake_blk   = partial(DecoderBlock, n_layers=n_layers, device=self.device,\n\t\t\t\trequires_grad=self.requires_grad)\n\t\tself.blocks = nn.Sequential(OrderedDict([\n\t\t\t('input', make_conv(self.vocab_size, self.n_init, 1, use_float16=False)),\n\t\t\t('group_1', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(self.n_init if i == 0 else 8 * self.n_hid, 8 * self.n_hid)) for i in blk_range],\n\t\t\t\t('upsample', nn.Upsample(scale_factor=2, mode='nearest')),\n\t\t\t]))),\n\t\t\t('group_2', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(8 * self.n_hid if i == 0 else 4 * self.n_hid, 4 * self.n_hid)) for i in blk_range],\n\t\t\t\t('upsample', nn.Upsample(scale_factor=2, mode='nearest')),\n\t\t\t]))),\n\t\t\t('group_3', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(4 * self.n_hid if i == 0 else 2 * self.n_hid, 2 * self.n_hid)) for i in blk_range],",
+        "type": "code",
+        "location": "/dall_e/decoder.py:55-74"
+    },
+    "29": {
+        "file_id": 5,
+        "content": "This code initializes a neural network for the DALL-E model, consisting of multiple groups with progressively smaller block sizes. It uses partial functions to create convolutional layers and blocks. The input is fed through a series of upsampling and convolution operations in each group before being processed by the final output layer.",
+        "type": "comment"
+    },
+    "30": {
+        "file_id": 5,
+        "content": "\t\t\t\t('upsample', nn.Upsample(scale_factor=2, mode='nearest')),\n\t\t\t]))),\n\t\t\t('group_4', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(2 * self.n_hid if i == 0 else 1 * self.n_hid, 1 * self.n_hid)) for i in blk_range],\n\t\t\t]))),\n\t\t\t('output', nn.Sequential(OrderedDict([\n\t\t\t\t('relu', nn.ReLU()),\n\t\t\t\t('conv', make_conv(1 * self.n_hid, 2 * self.output_channels, 1)),\n\t\t\t]))),\n\t\t]))\n\tdef forward(self, x: torch.Tensor) -> torch.Tensor:\n\t\tif len(x.shape) != 4:\n\t\t\traise ValueError(f'input shape {x.shape} is not 4d')\n\t\tif x.shape[1] != self.vocab_size:\n\t\t\traise ValueError(f'input has {x.shape[1]} channels but model built for {self.vocab_size}')\n\t\tif x.dtype != torch.float32:\n\t\t\traise ValueError('input must have dtype torch.float32')\n\t\treturn self.blocks(x)",
+        "type": "code",
+        "location": "/dall_e/decoder.py:75-94"
+    },
+    "31": {
+        "file_id": 5,
+        "content": "This code defines a class for an encoder-decoder model in PyTorch. The forward function takes in an input tensor and passes it through multiple blocks before returning the output tensor. The model consists of convolutional layers, residual connections, and ReLU activations to process input data.",
+        "type": "comment"
+    },
+    "32": {
+        "file_id": 6,
+        "content": "/dall_e/encoder.py",
+        "type": "filepath"
+    },
+    "33": {
+        "file_id": 6,
+        "content": "The code defines two classes, \"EncoderBlock\" and \"Encoder\", for neural network modules with 4 groups of 2 blocks each, using residual paths. It encodes input, performs max pooling, checks errors, and has various attributes for computation.",
+        "type": "summary"
+    },
+    "34": {
+        "file_id": 6,
+        "content": "import attr\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom collections  import OrderedDict\nfrom functools    import partial\nfrom dall_e.utils import Conv2d\n@attr.s(eq=False, repr=False)\nclass EncoderBlock(nn.Module):\n\tn_in:     int = attr.ib(validator=lambda i, a, x: x >= 1)\n\tn_out:    int = attr.ib(validator=lambda i, a, x: x >= 1 and x % 4 ==0)\n\tn_layers: int = attr.ib(validator=lambda i, a, x: x >= 1)\n\tdevice:        torch.device = attr.ib(default=None)\n\trequires_grad: bool         = attr.ib(default=False)\n\tdef __attrs_post_init__(self) -> None:\n\t\tsuper().__init__()\n\t\tself.n_hid = self.n_out // 4\n\t\tself.post_gain = 1 / (self.n_layers ** 2)\n\t\tmake_conv     = partial(Conv2d, device=self.device, requires_grad=self.requires_grad)\n\t\tself.id_path  = make_conv(self.n_in, self.n_out, 1) if self.n_in != self.n_out else nn.Identity()\n\t\tself.res_path = nn.Sequential(OrderedDict([\n\t\t\t\t('relu_1', nn.ReLU()),\n\t\t\t\t('conv_1', make_conv(self.n_in,  self.n_hid, 3)),\n\t\t\t\t('relu_2', nn.ReLU()),",
+        "type": "code",
+        "location": "/dall_e/encoder.py:1-31"
+    },
+    "35": {
+        "file_id": 6,
+        "content": "This code defines a class named \"EncoderBlock\" which is a module for an encoder block in the neural network. It takes input parameters such as the number of input features (n_in), output features (n_out), and layers (n_layers). The module also has properties like device, requires_grad, and initializes instance variables n_hid, post_gain. It uses a partial function to make a convolution layer and creates an identity path and residual path for the encoder block.",
+        "type": "comment"
+    },
+    "36": {
+        "file_id": 6,
+        "content": "\t\t\t\t('conv_2', make_conv(self.n_hid, self.n_hid, 3)),\n\t\t\t\t('relu_3', nn.ReLU()),\n\t\t\t\t('conv_3', make_conv(self.n_hid, self.n_hid, 3)),\n\t\t\t\t('relu_4', nn.ReLU()),\n\t\t\t\t('conv_4', make_conv(self.n_hid, self.n_out, 1)),]))\n\tdef forward(self, x: torch.Tensor) -> torch.Tensor:\n\t\treturn self.id_path(x) + self.post_gain * self.res_path(x)\n@attr.s(eq=False, repr=False)\nclass Encoder(nn.Module):\n\tgroup_count:     int = 4\n\tn_hid:           int = attr.ib(default=256,  validator=lambda i, a, x: x >= 64)\n\tn_blk_per_group: int = attr.ib(default=2,    validator=lambda i, a, x: x >= 1)\n\tinput_channels:  int = attr.ib(default=3,    validator=lambda i, a, x: x >= 1)\n\tvocab_size:      int = attr.ib(default=8192, validator=lambda i, a, x: x >= 512)\n\tdevice:              torch.device = attr.ib(default=torch.device('cpu'))\n\trequires_grad:       bool         = attr.ib(default=False)\n\tuse_mixed_precision: bool         = attr.ib(default=True)\n\tdef __attrs_post_init__(self) -> None:\n\t\tsuper().__init__()\n\t\tblk_range  = range(self.n_blk_per_group)",
+        "type": "code",
+        "location": "/dall_e/encoder.py:32-56"
+    },
+    "37": {
+        "file_id": 6,
+        "content": "This code defines a class called \"Encoder\" which is a type of neural network module. It has 4 groups, each group containing 2 blocks of convolutional layers and activation functions. The input is passed through the identity path and the residual path, then their sum is returned as output. The Encoder class also has several attributes such as number of hidden units, number of block per group, input channels, vocabulary size, device to run on, requires gradient computation, and use mixed precision.",
+        "type": "comment"
+    },
+    "38": {
+        "file_id": 6,
+        "content": "\t\tn_layers   = self.group_count * self.n_blk_per_group\n\t\tmake_conv  = partial(Conv2d, device=self.device, requires_grad=self.requires_grad)\n\t\tmake_blk   = partial(EncoderBlock, n_layers=n_layers, device=self.device,\n\t\t\t\trequires_grad=self.requires_grad)\n\t\tself.blocks = nn.Sequential(OrderedDict([\n\t\t\t('input', make_conv(self.input_channels, 1 * self.n_hid, 7)),\n\t\t\t('group_1', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(1 * self.n_hid, 1 * self.n_hid)) for i in blk_range],\n\t\t\t\t('pool', nn.MaxPool2d(kernel_size=2)),\n\t\t\t]))),\n\t\t\t('group_2', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(1 * self.n_hid if i == 0 else 2 * self.n_hid, 2 * self.n_hid)) for i in blk_range],\n\t\t\t\t('pool', nn.MaxPool2d(kernel_size=2)),\n\t\t\t]))),\n\t\t\t('group_3', nn.Sequential(OrderedDict([\n\t\t\t\t*[(f'block_{i + 1}', make_blk(2 * self.n_hid if i == 0 else 4 * self.n_hid, 4 * self.n_hid)) for i in blk_range],\n\t\t\t\t('pool', nn.MaxPool2d(kernel_size=2)),\n\t\t\t]))),\n\t\t\t('group_4', nn.Sequential(OrderedDict([\n\t\t\t\t",
+        "type": "code",
+        "location": "/dall_e/encoder.py:57-77"
+    },
+    "39": {
+        "file_id": 6,
+        "content": "This code is creating a neural network encoder with multiple blocks. It consists of four groups, each with different number of layers and hidden size. Each group has a series of EncoderBlocks followed by a max pooling operation. The input channel size is defined based on the current block and group configuration.",
+        "type": "comment"
+    },
+    "40": {
+        "file_id": 6,
+        "content": "*[(f'block_{i + 1}', make_blk(4 * self.n_hid if i == 0 else 8 * self.n_hid, 8 * self.n_hid)) for i in blk_range],\n\t\t\t]))),\n\t\t\t('output', nn.Sequential(OrderedDict([\n\t\t\t\t('relu', nn.ReLU()),\n\t\t\t\t('conv', make_conv(8 * self.n_hid, self.vocab_size, 1, use_float16=False)),\n\t\t\t]))),\n\t\t]))\n\tdef forward(self, x: torch.Tensor) -> torch.Tensor:\n\t\tif len(x.shape) != 4:\n\t\t\traise ValueError(f'input shape {x.shape} is not 4d')\n\t\tif x.shape[1] != self.input_channels:\n\t\t\traise ValueError(f'input has {x.shape[1]} channels but model built for {self.input_channels}')\n\t\tif x.dtype != torch.float32:\n\t\t\traise ValueError('input must have dtype torch.float32')\n\t\treturn self.blocks(x)",
+        "type": "code",
+        "location": "/dall_e/encoder.py:77-93"
+    },
+    "41": {
+        "file_id": 6,
+        "content": "The code defines a neural network module that takes an input tensor and passes it through multiple blocks of convolutional layers. The output is then processed by another set of convolutional layers before returning the final result. The function also includes error checks for the shape, number of channels, and data type of the input tensor to ensure proper functioning.",
+        "type": "comment"
+    },
+    "42": {
+        "file_id": 7,
+        "content": "/dall_e/utils.py",
+        "type": "filepath"
+    },
+    "43": {
+        "file_id": 7,
+        "content": "The code defines a Conv2d class with attributes and initializes weights and biases. It also includes three functions, `map_pixels`, `unmap_pixels`, and `conv2d`, for scaling, convolution operation, and padding based on kernel width.",
+        "type": "summary"
+    },
+    "44": {
+        "file_id": 7,
+        "content": "import attr\nimport math\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nlogit_laplace_eps: float = 0.1\n@attr.s(eq=False)\nclass Conv2d(nn.Module):\n\tn_in:  int = attr.ib(validator=lambda i, a, x: x >= 1)\n\tn_out: int = attr.ib(validator=lambda i, a, x: x >= 1)\n\tkw:    int = attr.ib(validator=lambda i, a, x: x >= 1 and x % 2 == 1)\n\tuse_float16:   bool         = attr.ib(default=True)\n\tdevice:        torch.device = attr.ib(default=torch.device('cpu'))\n\trequires_grad: bool         = attr.ib(default=False)\n\tdef __attrs_post_init__(self) -> None:\n\t\tsuper().__init__()\n\t\tw = torch.empty((self.n_out, self.n_in, self.kw, self.kw), dtype=torch.float32,\n\t\t\tdevice=self.device, requires_grad=self.requires_grad)\n\t\tw.normal_(std=1 / math.sqrt(self.n_in * self.kw ** 2))\n\t\tb = torch.zeros((self.n_out,), dtype=torch.float32, device=self.device,\n\t\t\trequires_grad=self.requires_grad)\n\t\tself.w, self.b = nn.Parameter(w), nn.Parameter(b)\n\tdef forward(self, x: torch.Tensor) -> torch.Tensor:\n\t\tif self.use_float16 and 'cuda' in self.w.device.type:",
+        "type": "code",
+        "location": "/dall_e/utils.py:1-32"
+    },
+    "45": {
+        "file_id": 7,
+        "content": "This code defines a Conv2d class that extends torch.nn.Module and implements a 2D convolutional layer using the nn.Conv2d module from PyTorch. The class has several attributes including number of input channels (n_in), number of output channels (n_out), kernel width (kw), use_float16 for whether to use float16 or float32, device for tensor storage location, and requires_grad for whether the parameters should be tracked during backpropagation. The class initializes the weight matrix (self.w) with normal distribution and bias (self.b) as zeros. It also has a forward method that applies the convolution operation on the input tensor (x).",
+        "type": "comment"
+    },
+    "46": {
+        "file_id": 7,
+        "content": "\t\t\tif x.dtype != torch.float16:\n\t\t\t\tx = x.half()\n\t\t\tw, b = self.w.half(), self.b.half()\n\t\telse:\n\t\t\tif x.dtype != torch.float32:\n\t\t\t\tx = x.float()\n\t\t\tw, b = self.w, self.b\n\t\treturn F.conv2d(x, w, b, padding=(self.kw - 1) // 2)\ndef map_pixels(x: torch.Tensor) -> torch.Tensor:\n\tif len(x.shape) != 4:\n\t\traise ValueError('expected input to be 4d')\n\tif x.dtype != torch.float:\n\t\traise ValueError('expected input to have type float')\n\treturn (1 - 2 * logit_laplace_eps) * x + logit_laplace_eps\ndef unmap_pixels(x: torch.Tensor) -> torch.Tensor:\n\tif len(x.shape) != 4:\n\t\traise ValueError('expected input to be 4d')\n\tif x.dtype != torch.float:\n\t\traise ValueError('expected input to have type float')\n\treturn torch.clamp((x - logit_laplace_eps) / (1 - 2 * logit_laplace_eps), 0, 1)",
+        "type": "code",
+        "location": "/dall_e/utils.py:33-59"
+    },
+    "47": {
+        "file_id": 7,
+        "content": "The code defines three functions: `map_pixels`, `unmap_pixels`, and `conv2d`. The `map_pixels` function scales the input tensor by a factor and adds a constant to it. It also checks if the input tensor is 4-dimensional and has the correct data type (float). Similarly, the `unmap_pixels` function scales and shifts the input tensor, and ensures the correct dimensions and data type. The `conv2d` function applies a convolution operation on the input tensor with specified weights and biases, and handles the padding based on the kernel width.",
+        "type": "comment"
+    },
+    "48": {
+        "file_id": 8,
+        "content": "/notebooks/usage.py",
+        "type": "filepath"
+    },
+    "49": {
+        "file_id": 8,
+        "content": "The code imports libraries, defines functions for image downloading and preprocessing, sets the target size, loads DALL-E models, processes an image, reconstructs it using the models, and displays both images.",
+        "type": "summary"
+    },
+    "50": {
+        "file_id": 8,
+        "content": "#!/usr/bin/env python\n# coding: utf-8\n# In[ ]:\nimport io\nimport os, sys\nimport requests\nimport PIL\nimport torch\nimport torchvision.transforms as T\nimport torchvision.transforms.functional as TF\nfrom dall_e          import map_pixels, unmap_pixels, load_model\nfrom IPython.display import display, display_markdown\ntarget_image_size = 256\ndef download_image(url):\n    resp = requests.get(url)\n    resp.raise_for_status()\n    return PIL.Image.open(io.BytesIO(resp.content))\ndef preprocess(img):\n    s = min(img.size)\n    if s < target_image_size:\n        raise ValueError(f'min dim for image {s} < {target_image_size}')\n    r = target_image_size / s\n    s = (round(r * img.size[1]), round(r * img.size[0]))\n    img = TF.resize(img, s, interpolation=PIL.Image.LANCZOS)\n    img = TF.center_crop(img, output_size=2 * [target_image_size])\n    img = torch.unsqueeze(T.ToTensor()(img), 0)\n    return map_pixels(img)\n# In[ ]:\n# This can be changed to a GPU, e.g. 'cuda:0'.\ndev = torch.device('cpu')\n# For faster load times, download these files locally and use the local paths instead.",
+        "type": "code",
+        "location": "/notebooks/usage.py:1-46"
+    },
+    "51": {
+        "file_id": 8,
+        "content": "This code imports necessary libraries, defines functions for downloading and preprocessing images, sets the target image size, and specifies the device (CPU) to be used.",
+        "type": "comment"
+    },
+    "52": {
+        "file_id": 8,
+        "content": "enc = load_model(\"https://cdn.openai.com/dall-e/encoder.pkl\", dev)\ndec = load_model(\"https://cdn.openai.com/dall-e/decoder.pkl\", dev)\n# In[ ]:\nx = preprocess(download_image('https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg'))\ndisplay_markdown('Original image:')\ndisplay(T.ToPILImage(mode='RGB')(x[0]))\n# In[ ]:\nimport torch.nn.functional as F\nz_logits = enc(x)\nz = torch.argmax(z_logits, axis=1)\nz = F.one_hot(z, num_classes=enc.vocab_size).permute(0, 3, 1, 2).float()\nx_stats = dec(z).float()\nx_rec = unmap_pixels(torch.sigmoid(x_stats[:, :3]))\nx_rec = T.ToPILImage(mode='RGB')(x_rec[0])\ndisplay_markdown('Reconstructed image:')\ndisplay(x_rec)\n# In[ ]:",
+        "type": "code",
+        "location": "/notebooks/usage.py:47-76"
+    },
+    "53": {
+        "file_id": 8,
+        "content": "This code loads the DALL-E encoder and decoder models, preprocesses an image, reconstructs it using the models, and displays both the original and reconstructed images.",
+        "type": "comment"
+    }
+}

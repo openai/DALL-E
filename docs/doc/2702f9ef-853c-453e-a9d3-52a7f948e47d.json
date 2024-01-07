@@ -1,0 +1,10 @@
+{
+    "summary": "Installed packages for codebase: Pillow, blobfile, mypy, numpy, pytest, requests, torch, torchvision.",
+    "details": [
+        {
+            "comment": "Installed packages for codebase: Pillow, blobfile, mypy, numpy, pytest, requests, torch, torchvision.",
+            "location": "\"/media/root/Toshiba XG3/works/DALL-E/docs/src/requirements.txt\":0-7",
+            "content": "Pillow\nblobfile\nmypy\nnumpy\npytest\nrequests\ntorch\ntorchvision"
+        }
+    ]
+}
