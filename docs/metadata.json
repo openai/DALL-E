@@ -1,7 +1,7 @@
 {
     "url": {
-        "full": "https://github.com/james4ever0/DALL-E",
-        "partial": "james4ever0/DALL-E"
+        "full": "https://github.com/openai/DALL-E",
+        "partial": "openai/DALL-E"
     },
     "file_mapping": {
         "0": {
