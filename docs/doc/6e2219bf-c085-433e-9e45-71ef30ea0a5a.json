@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports necessary libraries, defines a function load_model that loads the DALL-E model from a given path, and handles loading the model from either URL or local file.",
+    "details": [
+        {
+            "comment": "The code imports necessary libraries, defines a function load_model that loads the DALL-E model from a given path, and handles loading the model from either URL or local file.",
+            "location": "\"/media/root/Toshiba XG3/works/DALL-E/docs/src/dall_e/__init__.py\":0-17",
+            "content": "import io, requests\nimport torch\nimport torch.nn as nn\nfrom dall_e.encoder import Encoder\nfrom dall_e.decoder import Decoder\nfrom dall_e.utils   import map_pixels, unmap_pixels\ndef load_model(path: str, device: torch.device = None) -> nn.Module:\n    if path.startswith('http://') or path.startswith('https://'):\n        resp = requests.get(path)\n        resp.raise_for_status()\n        with io.BytesIO(resp.content) as buf:\n            return torch.load(buf, map_location=device)\n    else:\n        with open(path, 'rb') as f:\n            return torch.load(f, map_location=device)"
+        }
+    ]
+}

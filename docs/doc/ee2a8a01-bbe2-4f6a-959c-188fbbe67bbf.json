@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports libraries, defines functions for image downloading and preprocessing, sets the target size, loads DALL-E models, processes an image, reconstructs it using the models, and displays both images.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries, defines functions for downloading and preprocessing images, sets the target image size, and specifies the device (CPU) to be used.",
+            "location": "\"/media/root/Toshiba XG3/works/DALL-E/docs/src/notebooks/usage.py\":0-45",
+            "content": "#!/usr/bin/env python\n# coding: utf-8\n# In[ ]:\nimport io\nimport os, sys\nimport requests\nimport PIL\nimport torch\nimport torchvision.transforms as T\nimport torchvision.transforms.functional as TF\nfrom dall_e          import map_pixels, unmap_pixels, load_model\nfrom IPython.display import display, display_markdown\ntarget_image_size = 256\ndef download_image(url):\n    resp = requests.get(url)\n    resp.raise_for_status()\n    return PIL.Image.open(io.BytesIO(resp.content))\ndef preprocess(img):\n    s = min(img.size)\n    if s < target_image_size:\n        raise ValueError(f'min dim for image {s} < {target_image_size}')\n    r = target_image_size / s\n    s = (round(r * img.size[1]), round(r * img.size[0]))\n    img = TF.resize(img, s, interpolation=PIL.Image.LANCZOS)\n    img = TF.center_crop(img, output_size=2 * [target_image_size])\n    img = torch.unsqueeze(T.ToTensor()(img), 0)\n    return map_pixels(img)\n# In[ ]:\n# This can be changed to a GPU, e.g. 'cuda:0'.\ndev = torch.device('cpu')\n# For faster load times, download these files locally and use the local paths instead."
+        },
+        {
+            "comment": "This code loads the DALL-E encoder and decoder models, preprocesses an image, reconstructs it using the models, and displays both the original and reconstructed images.",
+            "location": "\"/media/root/Toshiba XG3/works/DALL-E/docs/src/notebooks/usage.py\":46-75",
+            "content": "enc = load_model(\"https://cdn.openai.com/dall-e/encoder.pkl\", dev)\ndec = load_model(\"https://cdn.openai.com/dall-e/decoder.pkl\", dev)\n# In[ ]:\nx = preprocess(download_image('https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKIWgaiJUtss/v2/1000x-1.jpg'))\ndisplay_markdown('Original image:')\ndisplay(T.ToPILImage(mode='RGB')(x[0]))\n# In[ ]:\nimport torch.nn.functional as F\nz_logits = enc(x)\nz = torch.argmax(z_logits, axis=1)\nz = F.one_hot(z, num_classes=enc.vocab_size).permute(0, 3, 1, 2).float()\nx_stats = dec(z).float()\nx_rec = unmap_pixels(torch.sigmoid(x_stats[:, :3]))\nx_rec = T.ToPILImage(mode='RGB')(x_rec[0])\ndisplay_markdown('Reconstructed image:')\ndisplay(x_rec)\n# In[ ]:"
+        }
+    ]
+}

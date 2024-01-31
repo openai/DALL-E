@@ -1,0 +1,15 @@
+{
+    "summary": "DALL\u00b7E's dVAE model by OpenAI reduces memory footprint but is unsuitable for high-fidelity image processing and general-purpose image compression due to loss of fine details.",
+    "details": [
+        {
+            "comment": "This is the model card for DALL\u00b7E's discrete VAE (dVAE), which was developed by OpenAI to reduce transformer memory footprint.",
+            "location": "\"/media/root/Toshiba XG3/works/DALL-E/docs/src/model_card.md\":0-20",
+            "content": "# Model Card: DALL\u00b7E dVAE\nFollowing [Model Cards for Model Reporting (Mitchell et al.)](https://arxiv.org/abs/1810.03993) and [Lessons from\nArchives (Jo & Gebru)](https://arxiv.org/pdf/1912.10389.pdf), we're providing some information about about the discrete\nVAE (dVAE) that was used to train DALL\u00b7E.\n## Model Details\nThe dVAE was developed by researchers at OpenAI to reduce the memory footprint of the transformer trained on the\ntext-to-image generation task. The details involved in training the dVAE are described in [the paper][dalle_paper]. This\nmodel card describes the first version of the model, released in February 2021. The model consists of a convolutional\nencoder and decoder whose architectures are described [here](dall_e/encoder.py) and [here](dall_e/decoder.py), respectively.\nFor questions or comments about the models or the code release, please file a Github issue.\n## Model Use\n### Intended Use\nThe model is intended for others to use for training their own generative models.\n### Out-of-Scope Use Cases"
+        },
+        {
+            "comment": "The model is not suitable for high-fidelity image processing or general-purpose image compression. It was trained on a mix of Conceptual Captions and filtered YFCC100M datasets using specific filters, details in the paper. The dataset will not be released. Compression leads to loss of fine image details, making it unsuitable for applications requiring preserved details.",
+            "location": "\"/media/root/Toshiba XG3/works/DALL-E/docs/src/model_card.md\":22-40",
+            "content": "This model is inappropriate for high-fidelity image processing applications. We also do not recommend its use as a\ngeneral-purpose image compressor.\n## Training Data\nThe model was trained on publicly available text-image pairs collected from the internet. This data consists partly of\n[Conceptual Captions][cc] and a filtered subset of [YFCC100M][yfcc100m]. We used a subset of the filters described in\n[Sharma et al.][cc_paper] to construct this dataset; further details are described in [our paper][dalle_paper]. We will\nnot be releasing the dataset.\n## Performance and Limitations\nThe heavy compression from the encoding process results in a noticeable loss of detail in the reconstructed images. This\nrenders it inappropriate for applications that require fine-grained details of the image to be preserved.\n[dalle_paper]: https://arxiv.org/abs/2102.12092\n[cc]: https://ai.google.com/research/ConceptualCaptions\n[cc_paper]: https://www.aclweb.org/anthology/P18-1238/\n[yfcc100m]: http://projects.dfki.uni-kl.de/yfcc100m/"
+        }
+    ]
+}

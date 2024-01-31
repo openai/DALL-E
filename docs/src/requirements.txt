@@ -1,0 +1,8 @@
+Pillow
+blobfile
+mypy
+numpy
+pytest
+requests
+torch
+torchvision
